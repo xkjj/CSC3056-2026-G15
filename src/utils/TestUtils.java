@@ -7,10 +7,10 @@ public final class TestUtils {
 	public static final String TEXT_COLOR_RESET = "\u001B[30m"; 
 	
 	public static void printTestPassed(String test_case_name) {
-		System.out.println(TestUtils.TEXT_COLOR_GREEN + "PASSED -- " + test_case_name);
+		System.out.println(TestUtils.TEXT_COLOR_GREEN + "PASSED -- " + test_case_name + TEXT_COLOR_RESET);
 	}
 	
 	public static void printTestFailed(String test_case_name) {
-		System.out.println(TestUtils.TEXT_COLOR_RED + "FAILED --" + test_case_name);
+		System.out.println(TestUtils.TEXT_COLOR_RED + "FAILED --" + test_case_name + TEXT_COLOR_RESET);
 	}
 }

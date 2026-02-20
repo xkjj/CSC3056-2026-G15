@@ -37,7 +37,29 @@ public class UserTest {
 				//new: after refactoring
 					TestUtils.printTestFailed(test_case_name);
 				
+				String test_case_name2 = "TC2-getPassword";
+				if (testUser.getPassword() == test_password)
+					TestUtils.printTestPassed(test_case_name2);
+				else
+					TestUtils.printTestFailed(test_case_name2);
 				
+				String test_case_name3 = "TC3-getFirst_name";
+				if (testUser.getFirst_name() == test_first_name)
+					TestUtils.printTestPassed(test_case_name3);
+				else
+					TestUtils.printTestFailed(test_case_name3);
+				
+				String test_case_name4 = "TC4-getLast_name";
+				if (testUser.getLast_name() == test_last_name)
+					TestUtils.printTestPassed(test_case_name4);
+				else
+					TestUtils.printTestFailed(test_case_name4);
+				
+				String test_case_name5 = "TC5-getMobile_number";
+				if (testUser.getMobile_number() == test_mobile_number)
+					TestUtils.printTestPassed(test_case_name5);
+				else
+					TestUtils.printTestFailed(test_case_name5);
 		
 	}
 }
