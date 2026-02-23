@@ -19,7 +19,8 @@ public class Account {
 	Date account_opening_date;
 	
 	public String toString() {
-		return account_number + ", " + username_of_account_holder + ", " + account_type + ", " + account_opening_date;
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMM dd, yyyy");
+		return String.format("%-10s| %-30s| %-10s| %-15s", account_number, username_of_account_holder, account_type, sdf.format(account_opening_date));
 	}
 	
 	public String getAccount_number() {

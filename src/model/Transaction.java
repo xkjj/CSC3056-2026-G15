@@ -17,7 +17,8 @@ public class Transaction {
 	Date transaction_date;
 	
 	public String toString() {
-		return account_number + ", " + transaction_amount + ", " + transaction_date;
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("MMM dd, yyyy");
+		return account_number + ", " + transaction_amount + ", " + sdf.format(transaction_date);
 	}
 	
 	public String getAccount_number() {
@@ -43,7 +44,5 @@ public class Transaction {
 	public void setTransaction_date(Date transaction_date) {
 		this.transaction_date = transaction_date;
 	}
-	
-	
 	
 }

@@ -60,6 +60,14 @@ public class UserTest {
 					TestUtils.printTestPassed(test_case_name5);
 				else
 					TestUtils.printTestFailed(test_case_name5);
-		
+				
+				//using assertions
+				assert testUser.getUsername() == test_username;
+				assert testUser.getPassword() == test_password;
+				assert testUser.getFirst_name() == test_first_name;
+				assert testUser.getLast_name() == test_last_name;
+				assert testUser.getMobile_number() == test_mobile_number;
+								
+				System.out.println("All Java assertions in the test suit passed (none failed).");
 	}
 }

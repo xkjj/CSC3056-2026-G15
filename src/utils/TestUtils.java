@@ -11,6 +11,6 @@ public final class TestUtils {
 	}
 	
 	public static void printTestFailed(String test_case_name) {
-		System.out.println(TestUtils.TEXT_COLOR_RED + "FAILED --" + test_case_name + TEXT_COLOR_RESET);
+		System.out.println(TestUtils.TEXT_COLOR_RED + "FAILED -- " + test_case_name + TEXT_COLOR_RESET);
 	}
 }
