@@ -13,4 +13,12 @@ public final class TestUtils {
 	public static void printTestFailed(String test_case_name) {
 		System.out.println(TestUtils.TEXT_COLOR_RED + "FAILED -- " + test_case_name + TEXT_COLOR_RESET);
 	}
+
+	public static void verifyEquals(String testName, int expected, int actual) {
+    if (expected == actual)
+        System.out.println(TestUtils.TEXT_COLOR_GREEN + testName + " passed" + TestUtils.TEXT_COLOR_RESET);
+    else
+        System.out.println(TestUtils.TEXT_COLOR_RED + testName + " FAILED" + TestUtils.TEXT_COLOR_RESET);
+}
+
 }

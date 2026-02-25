@@ -6,20 +6,22 @@ import utils.TestUtils;
 
 public class BalanceTestHelper {
 
-    public static void runBalanceChangeTest(String accountNumber, double amount, String testName) {
+    public static void runBalanceChangeTest(String account_number, double amount, String testName) {
 
         // 1-Setup
-        double balanceBefore = AccountController.getBalance(accountNumber, SimpleBankingApp.transactions);
+        double balanceBefore = AccountController.getBalance(account_number, SimpleBankingApp.transactions, SimpleBankingApp.accounts);
 
         // 2-Exercise
-        AccountController.addTransaction(accountNumber, amount, SimpleBankingApp.transactions, SimpleBankingApp.accounts);
+        AccountController.addTransaction(account_number, amount, SimpleBankingApp.transactions, SimpleBankingApp.accounts);
 
-        double balanceAfter = AccountController.getBalance(accountNumber, SimpleBankingApp.transactions);
+        double balanceAfter = AccountController.getBalance(account_number, SimpleBankingApp.transactions, SimpleBankingApp.accounts);
 
         // 3-Verify
         assert balanceBefore + amount == balanceAfter;
 
-        if (balanceBefore + amount == balanceAfter)
+        double expectedBalance = balanceBefore + amount;
+
+        if (expectedBalance == balanceAfter)
             System.out.println(TestUtils.TEXT_COLOR_GREEN + testName + " passed" + TestUtils.TEXT_COLOR_RESET);
         else {
             System.out.println(TestUtils.TEXT_COLOR_RED + testName + " FAILED" + TestUtils.TEXT_COLOR_RESET);
@@ -28,6 +30,6 @@ public class BalanceTestHelper {
         }
 
         // 4-Tear-down
-        AccountController.addTransaction(accountNumber, -amount, SimpleBankingApp.transactions, SimpleBankingApp.accounts);
+        AccountController.addTransaction(account_number, -amount, SimpleBankingApp.transactions, SimpleBankingApp.accounts);
     }
 }

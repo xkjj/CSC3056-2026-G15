@@ -53,6 +53,14 @@ public class AccountTest {
 						TestUtils.printTestPassed(test_case_name4);
 					else
 						TestUtils.printTestFailed(test_case_name4);
+
+					//using assertions
+					assert testAccount.getAccount_number() == test_account_number;
+					assert testAccount.getUsername_of_account_holder() == test_username_of_account_holder;
+					assert testAccount.getAccount_type() == test_account_type;
+					assert testAccount.getAccount_opening_date() == test_account_opening_date;
+
+					System.out.println("All Java assertions in the test suit passed (none failed).");
 		}
 
 }

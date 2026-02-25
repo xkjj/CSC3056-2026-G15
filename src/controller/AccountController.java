@@ -1,11 +1,9 @@
 package controller;
 
-import java.util.ArrayList;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Vector;
 import java.text.ParseException;
-
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
 import model.Account;
 import model.Transaction;
 
@@ -20,12 +18,17 @@ public class AccountController {
 		System.out.println("--------------------------------------------------------------------------------");
 		
 		for  (int i = 0; i < accounts.size(); i++) 
-            System.out.println(accounts.get(i).toString() + "| $" + AccountController.getBalance(accounts.get(i).getAccount_number(), transactions));
+            System.out.println(accounts.get(i).toString() + "| $" + AccountController.getBalance(accounts.get(i).getAccount_number(), transactions, accounts));
 		
 		System.out.println();
 	}
 	
-	public static double getBalance(String account_number, ArrayList<Transaction> transactions) {
+	public static double getBalance(String account_number, ArrayList<Transaction> transactions, ArrayList<Account> accounts) {
+                // Check account exists
+                if (!accountExists(account_number, accounts)) {
+                        throw new IllegalArgumentException(
+                                "Account does not exist: " + account_number);
+                }
 		double balance = 0.0;
 		
 		//loop through transactions
@@ -33,9 +36,9 @@ public class AccountController {
 			Transaction t = transactions.get(i);
 			
 			//check if transaction belongs to this account
-			if (t.getAccount_number() == account_number) {
-				balance += t.getTransaction_amount();
-			}
+			if (account_number.equals(t.getAccount_number())) {
+                                 balance += t.getTransaction_amount();
+                        }
 		}
 		return balance;
 	}
@@ -83,11 +86,50 @@ public class AccountController {
             ArrayList<Transaction> transactions, ArrayList<Account> accounts) {
                 // Validate account
                 if (!accountExists(account_number, accounts)) {
-                System.out.println("ERROR: Account does not exist: " + account_number);
-                return;
-         }
+                        throw new IllegalArgumentException(
+                                "Account does not exist: " + account_number);
+                }
+
+                // Check amount is not zero
+                if (amount == 0.0) {
+                        throw new IllegalArgumentException(
+                        "Transaction amount cannot be zero.");
+                }
 
 		Transaction aTransaction = new Transaction(account_number, amount, Calendar.getInstance().getTime());
 		transactions.add(aTransaction);
 	}
+
+        public static void transferFunds(String fromAccount,
+                                 String toAccount,
+                                 double amount,
+                                 ArrayList<Account> accounts,
+                                 ArrayList<Transaction> transactions) {
+
+                // Validation
+                if (!accountExists(fromAccount, accounts)) {
+                        throw new IllegalArgumentException("Source account does not exist: " + fromAccount);
+                }
+
+                if (!accountExists(toAccount, accounts)) {
+                        throw new IllegalArgumentException("Destination account does not exist: " + toAccount);
+                }
+
+                if (amount <= 0) {
+                        throw new IllegalArgumentException("Transfer amount must be positive.");
+                }
+
+                // Check sufficient balance
+                double balance = getBalance(fromAccount, transactions, accounts);
+                if (balance < amount) {
+                        throw new IllegalArgumentException("Insufficient funds in account: " + fromAccount);
+                }
+
+                // Perform transfer
+                // Withdraw from source
+                addTransaction(fromAccount, -amount, transactions, accounts);
+
+                // Deposit to destination
+                addTransaction(toAccount, amount, transactions, accounts);
+                }
 }

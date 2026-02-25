@@ -46,6 +46,13 @@ public class TransactionTest {
 					TestUtils.printTestPassed(test_case_name3);
 				else
 					TestUtils.printTestFailed(test_case_name3);
+
+				//using assertions
+				assert testTransaction.getAccount_number() == test_account_number;
+				assert testTransaction.getTransaction_amount() == test_transaction_amount;
+				assert testTransaction.getTransaction_date() == test_transaction_date;
+
+				System.out.println("All Java assertions in the test suit passed (none failed).");
 	}
 
 }
