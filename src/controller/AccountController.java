@@ -11,6 +11,20 @@ import model.Transaction;
 
 public class AccountController {
 	
+	public static void printAllAccounts(ArrayList<Account> accounts, ArrayList<Transaction> transactions) {
+		System.out.println("There are: " + accounts.size() + " accounts in the system.");
+		//System.out.println("Account_number | username_of_account_holder | account_type | account_opening_date");
+
+		System.out.println(String.format("%-10s| %-30s| %-10s| %-15s| %-15s", 
+				"Account #", "username_of_account_holder", "type", "opening_date", "Balance"));
+		System.out.println("--------------------------------------------------------------------------------");
+		
+		for  (int i = 0; i < accounts.size(); i++) 
+            System.out.println(accounts.get(i).toString() + "| $" + AccountController.getBalance(accounts.get(i).getAccount_number(), transactions));
+		
+		System.out.println();
+	}
+	
 	public static double getBalance(String account_number, ArrayList<Transaction> transactions) {
 		double balance = 0.0;
 		
