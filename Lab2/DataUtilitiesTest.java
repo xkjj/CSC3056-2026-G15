@@ -22,6 +22,7 @@ public class DataUtilitiesTest extends TestCase {
 		DefaultKeyedValues2D testValues = new DefaultKeyedValues2D();
 		values2D = testValues;
 
+		// R1/C1 keys used in 3x3 dataset for clearer labelling
 	    testValues.addValue(1, "R1", "C1");
 	    testValues.addValue(2, "R1", "C2");
 	    testValues.addValue(3, "R1", "C3");
@@ -278,10 +279,6 @@ public class DataUtilitiesTest extends TestCase {
 		 	dataset.addValue("A", 5);
 		 	dataset.addValue("B", 9);
 		 	dataset.addValue("C", 2);
-		 	System.out.println(dataset.getValue(0));
-		 	System.out.println(dataset.getValue(1));
-		 	System.out.println(dataset.getValue(2));
-	        System.out.println(dataset.getItemCount());
 
 	        KeyedValues result = DataUtilities.getCumulativePercentages(dataset);
 
@@ -316,8 +313,6 @@ public class DataUtilitiesTest extends TestCase {
 	    	dataset.addValue("A", 10);
 
 	        KeyedValues result = DataUtilities.getCumulativePercentages(dataset);
-	        System.out.println(dataset.getValue(0));
-	        System.out.println(dataset.getItemCount());
 
 	        assertEquals(1.0, result.getValue(0).doubleValue(), 0.0000001d);
 
@@ -331,10 +326,6 @@ public class DataUtilitiesTest extends TestCase {
 		 	dataset.addValue("A", -1);
 		 	dataset.addValue("B", 2);
 		 	dataset.addValue("C", 3);
-		 	System.out.println(dataset.getValue(0));
-		 	System.out.println(dataset.getValue(1));
-		 	System.out.println(dataset.getValue(2));
-	        System.out.println(dataset.getItemCount());
 
 	        KeyedValues result = DataUtilities.getCumulativePercentages(dataset);
 
